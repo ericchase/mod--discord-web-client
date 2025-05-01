@@ -137,7 +137,7 @@ nav[aria-label="Servers sidebar"] {
   >ul {
     >div {
       >div {
-        >div[class*="listItem_"] {
+        >div[class*="listItem_"]:not(:has(div[class*="guildSeparator_"])) {
           >div[class*="listItemWrapper_"] {
             >div {
               >svg {}

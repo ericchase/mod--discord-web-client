@@ -25,7 +25,7 @@
           >div[class*="tutorialContainer_"],
           /* Discover & Download Apps */
           & {
-            >div[class*="listItem_"] {
+            >div[class*="listItem_"]:not(:has(div[class*="guildSeparator_"])) {
               height: var(--user-size-48) !important;
             }
           }
@@ -78,7 +78,7 @@
           >div[class*="tutorialContainer_"],
           /* Discover & Download Apps */
           & {
-            >div[class*="listItem_"] {
+            >div[class*="listItem_"]:not(:has(div[class*="guildSeparator_"])) {
 
               /* >div[class*="pill_"] {} */
 
