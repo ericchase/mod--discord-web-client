@@ -1,0 +1,13 @@
+/*
+  // change normal text color
+  switch (getTheme()) {
+    case 'light':
+      styles = `html:not(#_){--text-normal: #000000;}\n\n${styles}`;
+      break;
+    case 'dark':
+    case 'darker':
+    case 'midnight':
+      styles = `html:not(#_){--text-normal: #EEEEEE;}\n\n${styles}`;
+      break;
+  }
+*/

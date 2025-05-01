@@ -1,0 +1,22 @@
+/* ==UserStyle==
+@name           twitch: user-area
+@namespace      github.com/openstyles/stylus
+@version        1.0.0
+@description    A new userstyle
+@author         Me
+==/UserStyle== */
+@-moz-document domain("discord.com") {
+  :root {
+    --user-blurple: #5865f2;
+    --user-gap-8: 8px;
+    --user-size-48: 48px;
+  }
+
+  section:not(#_)[aria-label="User area"] {
+
+    /* Decrease Panel Height */
+    >div[class*="container_"] {
+      height: 52px;
+    }
+  }
+}

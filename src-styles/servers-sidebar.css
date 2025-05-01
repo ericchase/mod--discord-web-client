@@ -1,0 +1,529 @@
+/* ==UserStyle==
+@name           twitch: servers-sidebar
+@namespace      github.com/openstyles/stylus
+@version        1.0.0
+@description    A new userstyle
+@author         Me
+==/UserStyle== */
+@-moz-document domain("discord.com") {
+  :root {
+    --user-blurple: #5865f2;
+    --user-gap-4: 4px;
+    --user-size-48: 48px;
+    --user-size-64: 64px;
+  }
+
+  nav:not(#_)[aria-label="Servers sidebar"] {
+
+    /* TASK: Fix top level widths, heights, and gaps. */
+    >ul {
+      >div {
+        >div {
+          gap: var(--user-gap-4) !important;
+
+          /* @me */
+          >div[class*="tutorialContainer_"],
+          /* Discover & Download Apps */
+          & {
+            >div[class*="listItem_"] {
+              height: var(--user-size-48) !important;
+            }
+          }
+
+          /* Direct Messages */
+          >div[aria-label="Direct Messages"] {
+            gap: var(--user-gap-4) !important;
+
+            >div {
+              height: var(--user-size-48) !important;
+
+              >div[class*="listItem_"] {
+                height: var(--user-size-48) !important;
+              }
+            }
+          }
+
+          /* Servers  */
+          >div[aria-label="Servers"] {
+            gap: var(--user-gap-4) !important;
+
+            >div[class*="listItem_"] {
+              height: var(--user-size-48) !important;
+            }
+
+            >div[class*="folderGroup_"] {
+              >div[class*="listItem_"] {
+                height: var(--user-size-48) !important;
+              }
+            }
+
+            >div[class*="folderGroup_"][class*="isExpanded_"] {
+
+              /* folderGuildsList_ */
+              >ul {
+                gap: var(--user-gap-4) !important;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    /* @me & Discover & Download Apps */
+    >ul {
+      >div {
+        >div {
+
+          /* @me */
+          >div[class*="tutorialContainer_"],
+          /* Discover & Download Apps */
+          & {
+            >div[class*="listItem_"] {
+
+              /* >div[class*="pill_"] {} */
+
+              >div[class*="listItemWrapper_"] {
+                width: var(--user-size-48) !important;
+                height: var(--user-size-48) !important;
+
+                /* wrapper_ */
+                >div {
+                  width: var(--user-size-48) !important;
+                  height: var(--user-size-48) !important;
+
+                  >svg {
+                    width: var(--user-size-48) !important;
+                    height: var(--user-size-48) !important;
+                    top: unset;
+                    left: unset;
+
+                    >foreignObject {
+                      width: var(--user-size-48) !important;
+                      height: var(--user-size-48) !important;
+
+                      /* wrapper_ */
+                      >div {
+                        width: var(--user-size-48) !important;
+                        height: var(--user-size-48) !important;
+
+                        /* TASK: Make icons circles again. */
+                        clip-path: circle(50%);
+
+                        /* childWrapper_ */
+                        >div {
+                          width: var(--user-size-48) !important;
+                          height: var(--user-size-48) !important;
+                        }
+                      }
+
+                      /* wrapper_.selected */
+                      >div[class*="selected_"] {
+
+                        /* TASK: Make selected/hovered icons rounded rectangles. */
+                        clip-path: inset(0 round 16px);
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+    /* Direct Messages */
+    >ul {
+      >div {
+        >div {
+          >div[aria-label="Direct Messages"] {
+            >div {
+              >div[class*="listItem_"] {
+                >div[class*="pill_"] {
+
+                  /* listItemWrapper_ */
+                  +div {
+                    width: var(--user-size-48) !important;
+                    height: var(--user-size-48) !important;
+
+                    /* wrapper_ */
+                    >div {
+                      width: var(--user-size-48) !important;
+                      height: var(--user-size-48) !important;
+
+                      >svg {
+                        width: var(--user-size-48) !important;
+                        height: var(--user-size-48) !important;
+                        top: unset;
+                        left: unset;
+
+                        >foreignObject {
+                          width: var(--user-size-48) !important;
+                          height: var(--user-size-48) !important;
+
+                          /* wrapper_ */
+                          >div {
+                            width: var(--user-size-48) !important;
+                            height: var(--user-size-48) !important;
+
+                            /* TASK: Make icons circles again. */
+                            clip-path: circle(50%);
+
+                            /* icon_ */
+                            >img {
+                              width: var(--user-size-48) !important;
+                              height: var(--user-size-48) !important;
+                            }
+                          }
+
+                          /* wrapper_.selected */
+                          >div[class*="selected_"] {
+
+                            /* TASK: Make selected/hovered icons rounded rectangles. */
+                            clip-path: inset(0 round 16px);
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+    /* Servers > listItem */
+    >ul {
+      >div {
+        >div {
+          >div[aria-label="Servers"] {
+            >div[class*="listItem_"] {
+              >div[class*="pill_"] {
+                +div {
+                  width: var(--user-size-48) !important;
+                  height: var(--user-size-48) !important;
+
+                  /* blobContainer_  */
+                  >div {
+                    width: var(--user-size-48) !important;
+                    height: var(--user-size-48) !important;
+
+                    /* wrapper_ */
+                    >div {
+                      width: var(--user-size-48) !important;
+                      height: var(--user-size-48) !important;
+
+                      >svg {
+                        width: var(--user-size-48) !important;
+                        height: var(--user-size-48) !important;
+                        top: unset;
+                        left: unset;
+
+                        >foreignObject {
+                          width: var(--user-size-48) !important;
+                          height: var(--user-size-48) !important;
+
+                          /* wrapper_ */
+                          >div {
+                            width: var(--user-size-48) !important;
+                            height: var(--user-size-48) !important;
+
+                            /* TASK: Make icons circles again. */
+                            clip-path: circle(50%);
+
+                            /* childWrapper_ */
+                            >div,
+                            /* icon_ */
+                            >img {
+                              width: var(--user-size-48) !important;
+                              height: var(--user-size-48) !important;
+                            }
+                          }
+
+                          /* wrapper_.selected */
+                          >div[class*="selected_"] {
+
+                            /* TASK: Make selected/hovered icons rounded rectangles. */
+                            clip-path: inset(0 round 16px);
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+    /* Servers > folderGroup */
+    >ul {
+      >div {
+        >div {
+          >div[aria-label="Servers"] {
+            >div[class*="folderGroup_"] {
+              >div[class*="listItem_"] {
+                >div[class*="pill_"] {
+
+                  /* folderHeader_*/
+                  +div {
+
+                    /* folderButton_ */
+                    >div {
+                      width: var(--user-size-48) !important;
+                      height: var(--user-size-48) !important;
+
+                      /* wrapper_ */
+                      >div {
+                        width: var(--user-size-48) !important;
+                        height: var(--user-size-48) !important;
+
+                        >svg {
+                          width: var(--user-size-48) !important;
+                          height: var(--user-size-48) !important;
+                          top: unset;
+                          left: unset;
+
+                          >foreignObject {
+                            width: var(--user-size-48) !important;
+                            height: var(--user-size-48) !important;
+
+                            /* folderButtonContent_ */
+                            >div {
+                              width: var(--user-size-48) !important;
+                              height: var(--user-size-48) !important;
+
+                              /* folderIconWrapper_ */
+                              >div {
+                                width: var(--user-size-48) !important;
+                                height: var(--user-size-48) !important;
+
+                                /* TASK: Make folder icons rounded rectangles. */
+                                clip-path: inset(0 round 16px);
+                              }
+
+                              /* folderPreviewWrapper_ */
+                              >div {
+                                width: var(--user-size-48) !important;
+                                height: var(--user-size-48) !important;
+
+                                /* TASK: Make folder icons rounded rectangles. */
+                                clip-path: inset(0 round 16px);
+
+                                /* TASK: Give closed folders the blurple background. */
+                                background-color: var(--user-blurple);
+
+                                /* folderPreview_ */
+                                >div {
+
+                                  /* icon_ */
+                                  >div {
+
+                                    /* TASK: Make closed folder mini icons circular instead of whatever the fk they did. */
+                                    border-radius: 50%;
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+    /* Servers > folderGroup.isHovering */
+    >ul {
+      >div {
+        >div {
+          >div[aria-label="Servers"] {
+            >div[class*="folderGroup_"][class*="isHovering_"] {
+              >div[class*="listItem_"] {
+                >div[class*="pill_"] {
+
+                  /* folderHeader_*/
+                  +div {
+
+                    /* folderButton_ */
+                    >div {
+
+                      /* wrapper_ */
+                      >div {
+                        >svg {
+                          >foreignObject {
+
+                            /* folderButtonContent_ */
+                            >div {
+
+                              /* folderIconWrapper_ */
+                              >div {}
+
+                              /* folderPreviewWrapper_ */
+                              >div {}
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+    /* Servers > folderGroup.isExpanded_ */
+    >ul {
+      >div {
+        >div {
+          >div[aria-label="Servers"] {
+            >div[class*="folderGroup_"][class*="isExpanded_"] {
+
+              /* TASK: Add padding for symmetry. */
+              padding-bottom: 2px;
+
+              /* folderGroupBackground_ */
+              >span {
+
+                /* TASK: Make expanded folder background easier to see. */
+                background-color: rgba(255, 255, 255, 0.125);
+                mix-blend-mode: difference;
+
+                /* TASK: Add extra room for icons. */
+                left: calc(var(--custom-guild-list-padding) - ((var(--guildbar-folder-size) + 4px) - var(--guildbar-avatar-size)) / 2);
+                width: calc(var(--guildbar-folder-size) + 4px);
+              }
+
+              >div[class*="listItem_"] {
+                >div[class*="pill_"] {
+
+                  /* folderHeader_*/
+                  +div {
+
+                    /* folderButton_ */
+                    >div {
+
+                      /* wrapper_ */
+                      >div {
+                        >svg {
+                          >foreignObject {
+
+                            /* folderButtonContent_ */
+                            >div {
+
+                              /* folderIconWrapper_ */
+                              /* >div {} */
+
+                              /* folderPreviewWrapper_ */
+                              >div {
+
+                                /* TASK: Remove the blurple for expanded folders. */
+                                background-color: unset;
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+
+              /* folderGuildsList_ */
+              >ul {
+
+                /* TASK: Remove concrete height. */
+                height: unset !important;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    /* Servers > folderGroup.isExpanded_ > listItem */
+    >ul {
+      >div {
+        >div {
+          >div[aria-label="Servers"] {
+            >div[class*="folderGroup_"][class*="isExpanded_"] {
+
+              /* folderGuildsList_ */
+              >ul {
+                >div[class*="listItem_"] {
+                  >div[class*="pill_"] {
+
+                    +div {
+                      width: var(--user-size-48) !important;
+                      height: var(--user-size-48) !important;
+
+                      /* blobContainer_  */
+                      >div {
+                        width: var(--user-size-48) !important;
+                        height: var(--user-size-48) !important;
+
+                        /* wrapper_ */
+                        >div {
+                          width: var(--user-size-48) !important;
+                          height: var(--user-size-48) !important;
+
+                          >svg {
+                            width: var(--user-size-48) !important;
+                            height: var(--user-size-48) !important;
+                            top: unset;
+                            left: unset;
+
+                            /* >mask {} */
+
+                            >foreignObject {
+                              width: var(--user-size-48) !important;
+                              height: var(--user-size-48) !important;
+
+                              /* wrapper_ */
+                              >div {
+                                width: var(--user-size-48) !important;
+                                height: var(--user-size-48) !important;
+
+                                /* TASK: Make icons circles again. */
+                                clip-path: circle(50%);
+
+                                /* icon_ */
+                                >img {
+                                  width: var(--user-size-48) !important;
+                                  height: var(--user-size-48) !important;
+                                }
+                              }
+
+                              /* wrapper_.selected */
+                              >div[class*="selected_"] {
+
+                                /* TASK: Make selected/hovered icons rounded rectangles. */
+                                clip-path: inset(0 round 16px);
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
