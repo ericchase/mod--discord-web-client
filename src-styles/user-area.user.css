@@ -10,7 +10,7 @@
 
     /* TASK: Decrease panel height. */
     >div[class*="container_"] {
-      height: 50px;
+      height: 52px;
     }
   }
 }
