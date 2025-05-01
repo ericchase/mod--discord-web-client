@@ -2,22 +2,16 @@
 @name           twitch: channel-textarea
 @namespace      github.com/openstyles/stylus
 @version        1.0.0
-@description    A new userstyle
+@description    channel-textarea
 @author         Me
 ==/UserStyle== */
 @-moz-document domain("discord.com") {
-  :root {
-    --user-blurple: #5865f2;
-    --user-gap-8: 8px;
-    --user-size-48: 48px;
-  }
-
   div:not(#_)[class*="channelTextArea_"] {
 
-    /* Decrease Bottom Margin */
+    /* TASK: Decrease bottom margin. */
     margin-bottom: var(--space-xs);
 
-    /* Larger Buttons */
+    /* TASK: Larger buttons. */
     div[class*="contents_"],
     div[class*="lottieIcon_"],
     div[class*="spriteContainer_"],
@@ -26,7 +20,7 @@
       height: 24px !important;
     }
 
-    /* Larger Buttons - Fix Offset */
+    /* TASK: Fix offset for larger buttons. */
     div[class*="spriteContainer_"] {
       >div[class*="sprite_"] {
         scale: 1.3333333333;
