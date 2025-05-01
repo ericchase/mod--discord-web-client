@@ -10,7 +10,7 @@ Simply install the userscripts and stylesheets that can be found in the folders 
 
 ### ./out
 
-In this folder, there is a userscript that applies fixes which cannot be done through css alone. Userscripts are used with extensions like Greasemonkey, Violentmonkey, Tampermonkey, etc that can inject JavaScript into websites.
+In this folder, there is a userscript that applies fixes which cannot be done through CSS alone. Userscripts are used with extensions like Greasemonkey, Violentmonkey, Tampermonkey, etc that can inject JavaScript into websites.
 
 ### ./src-styles
 
