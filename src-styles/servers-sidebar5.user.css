@@ -1,0 +1,63 @@
+/* ==UserStyle==
+@name           twitch: servers sidebar - circle folder mini icons
+@namespace      github.com/openstyles/stylus
+@version        1.0.0
+@description    Servers sidebar - Circle Folder Mini Icons
+@author         Me
+==/UserStyle== */
+@-moz-document domain("discord.com") {
+  nav:not(#_)[aria-label="Servers sidebar"] {
+    >ul {
+      >div {
+        >div {
+          >div[aria-label="Servers"] {
+            >div[class*="folderGroup_"] {
+              >div[class*="listItem_"] {
+                >div[class*="pill_"] {
+
+                  /* folderHeader_*/
+                  +div {
+
+                    /* folderButton_ */
+                    >div {
+
+                      /* wrapper_ */
+                      >div {
+                        >svg {
+                          >foreignObject {
+
+                            /*folderButtonInner_*/
+                            >div {
+
+                              /* folderButtonContent_ */
+                              >div {
+
+                                /* folderPreviewWrapper_ */
+                                >div {
+
+                                  /* folderPreview_ */
+                                  >div {
+
+                                    /* icon_ */
+                                    >div {
+                                      /* TASK: Make closed folder mini icons circular instead of whatever the fk they did. */
+                                      border-radius: 50%;
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
