@@ -1,8 +1,7 @@
 /* ==UserStyle==
-@name           twitch: servers-sidebar - fix top level widths, heights, and gaps.
+@name           com.discord: servers sidebar - fix top level widths, heights, and gaps
 @namespace      github.com/openstyles/stylus
 @version        1.0.0
-@description    Servers sidebar - Fix top level widths, heights, and gaps.
 @author         Me
 ==/UserStyle== */
 @-moz-document domain("discord.com") {
@@ -11,46 +10,46 @@
     --user-size-48: 48px;
   }
 
-  nav:not(#_)[aria-label="Servers sidebar"] {
-    >ul {
-      >div {
-        >div {
+  nav:not(#_)[aria-label='Servers sidebar'] {
+    > ul {
+      > div {
+        > div {
           gap: var(--user-gap-4) !important;
 
           /* @me */
           >div[class*="tutorialContainer_"],
           /* Discover & Download Apps */
           & {
-            >div[class*="listItem_"]:not(:has(div[class*="guildSeparator_"])) {
+            > div[class*='listItem_']:not(:has(div[class*='guildSeparator_'])) {
               height: var(--user-size-48) !important;
 
               /* >div[class*="pill_"] {} */
-              >div[class*="listItemWrapper_"] {
+              > div[class*='listItemWrapper_'] {
                 width: var(--user-size-48) !important;
                 height: var(--user-size-48) !important;
 
                 /* wrapper_ */
-                >div {
+                > div {
                   width: var(--user-size-48) !important;
                   height: var(--user-size-48) !important;
 
-                  >svg {
+                  > svg {
                     width: var(--user-size-48) !important;
                     height: var(--user-size-48) !important;
                     top: unset;
                     left: unset;
 
-                    >foreignObject {
+                    > foreignObject {
                       width: var(--user-size-48) !important;
                       height: var(--user-size-48) !important;
 
                       /* wrapper_ */
-                      >div {
+                      > div {
                         width: var(--user-size-48) !important;
                         height: var(--user-size-48) !important;
 
                         /* childWrapper_ */
-                        >div {
+                        > div {
                           width: var(--user-size-48) !important;
                           height: var(--user-size-48) !important;
                         }
@@ -63,45 +62,44 @@
           }
 
           /* Direct Messages */
-          >div[aria-label="Direct Messages"] {
+          > div[aria-label='Direct Messages'] {
             gap: var(--user-gap-4) !important;
             margin-top: unset !important;
 
-            >div {
+            > div {
               height: var(--user-size-48) !important;
 
-              >div[class*="listItem_"] {
+              > div[class*='listItem_'] {
                 height: var(--user-size-48) !important;
 
-                >div[class*="pill_"] {
-
+                > div[class*='pill_'] {
                   /* listItemWrapper_ */
-                  +div {
+                  + div {
                     width: var(--user-size-48) !important;
                     height: var(--user-size-48) !important;
 
                     /* wrapper_ */
-                    >div {
+                    > div {
                       width: var(--user-size-48) !important;
                       height: var(--user-size-48) !important;
 
-                      >svg {
+                      > svg {
                         width: var(--user-size-48) !important;
                         height: var(--user-size-48) !important;
                         top: unset;
                         left: unset;
 
-                        >foreignObject {
+                        > foreignObject {
                           width: var(--user-size-48) !important;
                           height: var(--user-size-48) !important;
 
                           /* wrapper_ */
-                          >div {
+                          > div {
                             width: var(--user-size-48) !important;
                             height: var(--user-size-48) !important;
 
                             /* icon_ */
-                            >img {
+                            > img {
                               width: var(--user-size-48) !important;
                               height: var(--user-size-48) !important;
                             }
@@ -115,44 +113,44 @@
             }
           }
 
-          >div[aria-label="Direct Messages"]:empty {
+          > div[aria-label='Direct Messages']:empty {
             display: none;
           }
 
           /* Servers  */
-          >div[aria-label="Servers"] {
+          > div[aria-label='Servers'] {
             gap: var(--user-gap-4) !important;
 
-            >div[class*="listItem_"] {
+            > div[class*='listItem_'] {
               height: var(--user-size-48) !important;
 
-              >div[class*="pill_"] {
-                +div {
+              > div[class*='pill_'] {
+                + div {
                   width: var(--user-size-48) !important;
                   height: var(--user-size-48) !important;
 
                   /* blobContainer_  */
-                  >div {
+                  > div {
                     width: var(--user-size-48) !important;
                     height: var(--user-size-48) !important;
 
                     /* wrapper_ */
-                    >div {
+                    > div {
                       width: var(--user-size-48) !important;
                       height: var(--user-size-48) !important;
 
-                      >svg {
+                      > svg {
                         width: var(--user-size-48) !important;
                         height: var(--user-size-48) !important;
                         top: unset;
                         left: unset;
 
-                        >foreignObject {
+                        > foreignObject {
                           width: var(--user-size-48) !important;
                           height: var(--user-size-48) !important;
 
                           /* wrapper_ */
-                          >div {
+                          > div {
                             width: var(--user-size-48) !important;
                             height: var(--user-size-48) !important;
 
@@ -172,52 +170,51 @@
               }
             }
 
-            >div[class*="folderGroup_"] {
-              >div[class*="listItem_"] {
+            > div[class*='folderGroup_'] {
+              > div[class*='listItem_'] {
                 height: var(--user-size-48) !important;
               }
             }
 
-            >div[class*="folderGroup_"][class*="isExpanded_"] {
-
+            > div[class*='folderGroup_'][class*='isExpanded_'] {
               /* folderGuildsList_ */
-              >ul {
+              > ul {
                 gap: var(--user-gap-4) !important;
 
-                >div[class*="listItem_"] {
-                  >div[class*="pill_"] {
-                    +div {
+                > div[class*='listItem_'] {
+                  > div[class*='pill_'] {
+                    + div {
                       width: var(--user-size-48) !important;
                       height: var(--user-size-48) !important;
 
                       /* blobContainer_  */
-                      >div {
+                      > div {
                         width: var(--user-size-48) !important;
                         height: var(--user-size-48) !important;
 
                         /* wrapper_ */
-                        >div {
+                        > div {
                           width: var(--user-size-48) !important;
                           height: var(--user-size-48) !important;
 
-                          >svg {
+                          > svg {
                             width: var(--user-size-48) !important;
                             height: var(--user-size-48) !important;
                             top: unset;
                             left: unset;
 
                             /* >mask {} */
-                            >foreignObject {
+                            > foreignObject {
                               width: var(--user-size-48) !important;
                               height: var(--user-size-48) !important;
 
                               /* wrapper_ */
-                              >div {
+                              > div {
                                 width: var(--user-size-48) !important;
                                 height: var(--user-size-48) !important;
 
                                 /* icon_ */
-                                >img {
+                                > img {
                                   width: var(--user-size-48) !important;
                                   height: var(--user-size-48) !important;
                                 }

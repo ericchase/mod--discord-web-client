@@ -1,8 +1,7 @@
 /* ==UserStyle==
-@name           twitch: servers-sidebar - blurple folder background
+@name           com.discord: servers sidebar - blurple folder background
 @namespace      github.com/openstyles/stylus
 @version        1.0.0
-@description    Servers sidebar - Blurple Folder Background
 @author         Me
 ==/UserStyle== */
 @-moz-document domain("discord.com") {
@@ -10,34 +9,28 @@
     --user-blurple: #5865f2;
   }
 
-  nav:not(#_)[aria-label="Servers sidebar"] {
-    >ul {
-      >div {
-        >div {
-          >div[aria-label="Servers"] {
-            >div[class*="folderGroup_"] {
-              >div[class*="listItem_"] {
-                >div[class*="pill_"] {
-
+  nav:not(#_)[aria-label='Servers sidebar'] {
+    > ul {
+      > div {
+        > div {
+          > div[aria-label='Servers'] {
+            > div[class*='folderGroup_'] {
+              > div[class*='listItem_'] {
+                > div[class*='pill_'] {
                   /* folderHeader_*/
-                  +div {
-
+                  + div {
                     /* folderButton_ */
-                    >div {
-
+                    > div {
                       /* wrapper_ */
-                      >div {
-                        >svg {
-                          >foreignObject {
-
+                      > div {
+                        > svg {
+                          > foreignObject {
                             /*folderButtonInner_*/
-                            >div {
-
+                            > div {
                               /* folderButtonContent_ */
-                              >div {
-
+                              > div {
                                 /* folderPreviewWrapper_ */
-                                >div {
+                                > div {
                                   /* TASK: Add the blurple to closed folders. */
                                   background-color: var(--user-blurple);
                                 }
@@ -52,29 +45,23 @@
               }
             }
 
-            >div[class*="folderGroup_"][class*="isExpanded_"] {
-              >div[class*="listItem_"] {
-                >div[class*="pill_"] {
-
+            > div[class*='folderGroup_'][class*='isExpanded_'] {
+              > div[class*='listItem_'] {
+                > div[class*='pill_'] {
                   /* folderHeader_*/
-                  +div {
-
+                  + div {
                     /* folderButton_ */
-                    >div {
-
+                    > div {
                       /* wrapper_ */
-                      >div {
-                        >svg {
-                          >foreignObject {
-
+                      > div {
+                        > svg {
+                          > foreignObject {
                             /*folderButtonInner_*/
-                            >div {
-
+                            > div {
                               /* folderButtonContent_ */
-                              >div {
-
+                              > div {
                                 /* folderPreviewWrapper_ */
-                                >div {
+                                > div {
                                   /* TASK: Remove the blurple from expanded folders. */
                                   background-color: unset;
                                 }

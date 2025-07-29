@@ -1,0 +1,12 @@
+/* ==UserStyle==
+@name           com.discord: servers sidebar - hide buttons 
+@namespace      github.com/openstyles/stylus
+@version        1.0.0
+@author         Me
+==/UserStyle== */
+@-moz-document domain("discord.com") {
+  [class^='containerDefault_']:has([aria-label='Server Guide']),
+  [class^='containerDefault_']:has([aria-label='Server Boosts']) {
+    display: none;
+  }
+}

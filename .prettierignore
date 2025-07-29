@@ -2,15 +2,15 @@
 
 # use biome for these
 # https://biomejs.dev/internals/language-support/
-*.js
-*.ts
-*.jsx
-*.tsx
-*.json
-*.jsonc
-*.css
-*.graphqls
-*.graphql
+# *.js
+# *.ts
+# *.jsx
+# *.tsx
+# *.json
+# *.jsonc
+# *.css
+# *.graphqls
+# *.graphql
 
 # probably don't want to format your hand written documents
 coverage/
@@ -28,5 +28,5 @@ out/
 # library comes pre-formatted, but you can format it differently if you want
 src/lib/ericchase/
 
-src-html/
-src-styles/
+# src-html/
+# src-styles/
