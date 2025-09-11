@@ -10,20 +10,20 @@
 // src/lib/ericchase/WebPlatform_DOM_Element_Added_Observer_Class.ts
 class Class_WebPlatform_DOM_Element_Added_Observer_Class {
   config;
-  $match_set = new Set;
+  $match_set = new Set();
   $mutation_observer;
-  $subscription_set = new Set;
+  $subscription_set = new Set();
   constructor(config) {
     this.config = {
       include_existing_elements: config.include_existing_elements ?? true,
       options: {
-        subtree: config.options?.subtree ?? true
+        subtree: config.options?.subtree ?? true,
       },
       selector: config.selector,
-      source: config.source ?? document.documentElement
+      source: config.source ?? document.documentElement,
     };
     this.$mutation_observer = new MutationObserver((mutationRecords) => {
-      const sent_set = new Set;
+      const sent_set = new Set();
       for (const record of mutationRecords) {
         for (const node of record.addedNodes) {
           const tree_walker = document.createTreeWalker(node, NodeFilter.SHOW_ELEMENT);
@@ -46,11 +46,11 @@ class Class_WebPlatform_DOM_Element_Added_Observer_Class {
     });
     this.$mutation_observer.observe(this.config.source, {
       childList: true,
-      subtree: this.config.options.subtree
+      subtree: this.config.options.subtree,
     });
     if (this.config.include_existing_elements === true) {
       if (this.config.options.subtree === true) {
-        const sent_set = new Set;
+        const sent_set = new Set();
         const tree_walker = document.createTreeWalker(this.config.source, NodeFilter.SHOW_ELEMENT);
         const processCurrentNode = () => {
           if (sent_set.has(tree_walker.currentNode) === false) {
@@ -110,9 +110,9 @@ function WebPlatform_DOM_Element_Added_Observer_Class(config) {
 // src/com.discord; autoplay quest videos.user.ts
 async function main() {
   WebPlatform_DOM_Element_Added_Observer_Class({
-    selector: 'video[disablepictureinpicture=""]'
+    selector: 'video[disablepictureinpicture=""]',
   }).subscribe(async (video) => {
-    console.log("found:", video);
+    console.log('found:', video);
     if (video instanceof HTMLVideoElement) {
       setInterval(() => {
         if (video.paused === true) {

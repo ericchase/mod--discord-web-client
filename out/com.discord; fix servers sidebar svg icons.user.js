@@ -10,20 +10,20 @@
 // src/lib/ericchase/WebPlatform_DOM_Element_Added_Observer_Class.ts
 class Class_WebPlatform_DOM_Element_Added_Observer_Class {
   config;
-  $match_set = new Set;
+  $match_set = new Set();
   $mutation_observer;
-  $subscription_set = new Set;
+  $subscription_set = new Set();
   constructor(config) {
     this.config = {
       include_existing_elements: config.include_existing_elements ?? true,
       options: {
-        subtree: config.options?.subtree ?? true
+        subtree: config.options?.subtree ?? true,
       },
       selector: config.selector,
-      source: config.source ?? document.documentElement
+      source: config.source ?? document.documentElement,
     };
     this.$mutation_observer = new MutationObserver((mutationRecords) => {
-      const sent_set = new Set;
+      const sent_set = new Set();
       for (const record of mutationRecords) {
         for (const node of record.addedNodes) {
           const tree_walker = document.createTreeWalker(node, NodeFilter.SHOW_ELEMENT);
@@ -46,11 +46,11 @@ class Class_WebPlatform_DOM_Element_Added_Observer_Class {
     });
     this.$mutation_observer.observe(this.config.source, {
       childList: true,
-      subtree: this.config.options.subtree
+      subtree: this.config.options.subtree,
     });
     if (this.config.include_existing_elements === true) {
       if (this.config.options.subtree === true) {
-        const sent_set = new Set;
+        const sent_set = new Set();
         const tree_walker = document.createTreeWalker(this.config.source, NodeFilter.SHOW_ELEMENT);
         const processCurrentNode = () => {
           if (sent_set.has(tree_walker.currentNode) === false) {
@@ -115,14 +115,14 @@ WebPlatform_DOM_Element_Added_Observer_Class({ selector: 'nav[aria-label="Server
 WebPlatform_DOM_Element_Added_Observer_Class({ selector: 'nav[aria-label="Servers sidebar"] >ul >div >div >div[aria-label="Servers"] >div[class*="folderGroup_"][class*="isExpanded_"] >ul >div[class*="listItem_"] >div[class*="pill_"] +div >div >div >svg' }).subscribe(mutate);
 WebPlatform_DOM_Element_Added_Observer_Class({ selector: 'nav[aria-label="Servers sidebar"] >ul >div >div >div[class*="listItem_"] >div[class*="listItemWrapper_"] >div >svg' }).subscribe(mutate);
 function mutate(element) {
-  if ("viewBox" in element) {
+  if ('viewBox' in element) {
     const viewBox = element.viewBox;
     viewBox.baseVal.width = 48;
     viewBox.baseVal.height = 48;
     viewBox.baseVal.x = 0;
     viewBox.baseVal.y = 0;
   }
-  for (const mask of element.querySelectorAll("mask")) {
+  for (const mask of element.querySelectorAll('mask')) {
     mask.remove();
   }
 }
