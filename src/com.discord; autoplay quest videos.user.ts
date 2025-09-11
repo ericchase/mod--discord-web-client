@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name        com.discord: autoplay quest videos
+// @name        com.discord; autoplay quest videos
 // @match       https://discord.com/discovery/quests*
 // @version     1.0.0
 // @description 7/19/2025, 2:53:33 PM

@@ -4,6 +4,8 @@ https://github.com/ericchase/mod--discord-web-client
 
 This project is the successor to my attempt at creating a semi-automated modder for the Discord desktop client (https://github.com/ericchase/mod--discord-client). The desktop client has a TON of issues before even getting to styling. After months of working against their constant updates, I decided to uninstall and start using the browser client.
 
+- [Static Listing](https://ericchase.github.io/mod--discord-web-client/)
+
 ## Usage
 
 Simply install the userscripts and stylesheets that can be found in the folders outlined below:

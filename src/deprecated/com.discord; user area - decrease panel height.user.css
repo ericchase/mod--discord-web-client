@@ -1,0 +1,14 @@
+/* ==UserStyle==
+@name           com.discord; user area - decrease panel height
+@namespace      github.com/openstyles/stylus
+@version        1.0.0
+@author         Me
+==/UserStyle== */
+@-moz-document domain("discord.com") {
+  section:not(#_)[aria-label='User area'] {
+    /* TASK: Decrease panel height. */
+    > div[class*='container_'] {
+      height: 52px;
+    }
+  }
+}

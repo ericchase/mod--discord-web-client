@@ -1,0 +1,54 @@
+/* ==UserStyle==
+@name           com.discord; servers sidebar - rounded rectangle folder icons
+@namespace      github.com/openstyles/stylus
+@version        1.0.0
+@author         Me
+==/UserStyle== */
+@-moz-document domain("discord.com") {
+  nav:not(#_)[aria-label='Servers sidebar'] {
+    > ul {
+      > div {
+        > div {
+          > div[aria-label='Servers'] {
+            > div[class*='folderGroup_'] {
+              > div[class*='listItem_'] {
+                > div[class*='pill_'] {
+                  /* folderHeader_*/
+                  + div {
+                    /* folderButton_ */
+                    > div {
+                      /* wrapper_ */
+                      > div {
+                        > svg {
+                          > foreignObject {
+                            /*folderButtonInner_*/
+                            > div {
+                              /* folderButtonContent_ */
+                              > div {
+                                /* folderIconWrapper_ */
+                                > div {
+                                  /* TASK: Make folder icons rounded rectangles. */
+                                  clip-path: inset(0 round 16px);
+                                }
+
+                                /* folderPreviewWrapper_ */
+                                > div {
+                                  /* TASK: Make folder icons rounded rectangles. */
+                                  clip-path: inset(0 round 16px);
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

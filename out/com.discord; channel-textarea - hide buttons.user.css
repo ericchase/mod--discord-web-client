@@ -1,0 +1,12 @@
+/* ==UserStyle==
+@name           com.discord; channel-textarea - hide buttons
+@namespace      github.com/openstyles/stylus
+@version        1.0.0
+@author         Me
+==/UserStyle== */
+@-moz-document domain("discord.com") {
+  [aria-label='Send a gift'],
+  [aria-label='Apps'] {
+    display: none;
+  }
+}

@@ -1,0 +1,112 @@
+/* ==UserStyle==
+@name           com.discord; servers sidebar - circular server icons
+@namespace      github.com/openstyles/stylus
+@version        1.0.0
+@author         Me
+==/UserStyle== */
+@-moz-document domain("discord.com") {
+  nav:not(#_)[aria-label='Servers sidebar'] {
+    > ul {
+      > div {
+        > div {
+          /* @me */
+          >div[class*="tutorialContainer_"],
+          /* Discover & Download Apps */
+          & {
+            > div[class*='listItem_']:not(:has(div[class*='guildSeparator_'])) {
+              /* >div[class*="pill_"] {} */
+              > div[class*='listItemWrapper_'] {
+                /* wrapper_ */
+                > div {
+                  > svg {
+                    > foreignObject {
+                      /* wrapper_ */
+                      > div {
+                        clip-path: circle(50%);
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+
+          /* Direct Messages */
+          > div[aria-label='Direct Messages'] {
+            > div {
+              > div[class*='listItem_'] {
+                > div[class*='pill_'] {
+                  /* listItemWrapper_ */
+                  + div {
+                    /* wrapper_ */
+                    > div {
+                      > svg {
+                        > foreignObject {
+                          /* wrapper_ */
+                          > div {
+                            clip-path: circle(50%);
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+
+          /* Servers  */
+          > div[aria-label='Servers'] {
+            > div[class*='listItem_'] {
+              > div[class*='pill_'] {
+                + div {
+                  /* blobContainer_  */
+                  > div {
+                    /* wrapper_ */
+                    > div {
+                      > svg {
+                        > foreignObject {
+                          /* wrapper_ */
+                          > div {
+                            clip-path: circle(50%);
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+
+            > div[class*='folderGroup_'][class*='isExpanded_'] {
+              /* folderGuildsList_ */
+              > ul {
+                > div[class*='listItem_'] {
+                  > div[class*='pill_'] {
+                    + div {
+                      /* blobContainer_  */
+                      > div {
+                        /* wrapper_ */
+                        > div {
+                          > svg {
+                            /* >mask {} */
+                            > foreignObject {
+                              /* wrapper_ */
+                              > div {
+                                clip-path: circle(50%);
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

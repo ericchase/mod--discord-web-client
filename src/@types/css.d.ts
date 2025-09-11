@@ -1,12 +1,12 @@
 declare module '*.css' {
-  const content: string;
-  export default content;
+  const contents: string;
+  export = contents;
 }
 declare module '*.sass' {
-  const content: string;
-  export default content;
+  const contents: string;
+  export = contents;
 }
 declare module '*.scss' {
-  const content: string;
-  export default content;
+  const contents: string;
+  export = contents;
 }

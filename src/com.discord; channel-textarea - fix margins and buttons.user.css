@@ -1,0 +1,30 @@
+/* ==UserStyle==
+@name           com.discord; channel-textarea - fix margins and buttons
+@namespace      github.com/openstyles/stylus
+@version        1.0.0
+@author         Me
+==/UserStyle== */
+@-moz-document domain("discord.com") {
+  div:not(#_)[class*='channelTextArea_'] {
+    /* TASK: Decrease bottom margin. */
+    /*
+    margin-bottom: var(--space-xs);
+    */
+
+    /* TASK: Larger buttons. */
+    div[class*='contents_'],
+    div[class*='lottieIcon_'],
+    div[class*='spriteContainer_']/*, svg*/ {
+      width: 24px !important;
+      height: 24px !important;
+    }
+
+    /* TASK: Fix offset for larger buttons. */
+    div[class*='spriteContainer_'] {
+      > div[class*='sprite_'] {
+        scale: 1.3333333333;
+        transform-origin: top left;
+      }
+    }
+  }
+}

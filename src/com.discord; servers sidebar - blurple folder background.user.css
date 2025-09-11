@@ -1,0 +1,83 @@
+/* ==UserStyle==
+@name           com.discord; servers sidebar - blurple folder background
+@namespace      github.com/openstyles/stylus
+@version        1.0.0
+@author         Me
+==/UserStyle== */
+@-moz-document domain("discord.com") {
+  :root {
+    --user-blurple: #5865f2;
+  }
+
+  nav:not(#_)[aria-label='Servers sidebar'] {
+    > ul {
+      > div {
+        > div {
+          > div[aria-label='Servers'] {
+            > div[class*='folderGroup_'] {
+              > div[class*='listItem_'] {
+                > div[class*='pill_'] {
+                  /* folderHeader_*/
+                  + div {
+                    /* folderButton_ */
+                    > div {
+                      /* wrapper_ */
+                      > div {
+                        > svg {
+                          > foreignObject {
+                            /*folderButtonInner_*/
+                            > div {
+                              /* folderButtonContent_ */
+                              > div {
+                                /* folderPreviewWrapper_ */
+                                > div {
+                                  /* TASK: Add the blurple to closed folders. */
+                                  background-color: var(--user-blurple);
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+
+            > div[class*='folderGroup_'][class*='isExpanded_'] {
+              > div[class*='listItem_'] {
+                > div[class*='pill_'] {
+                  /* folderHeader_*/
+                  + div {
+                    /* folderButton_ */
+                    > div {
+                      /* wrapper_ */
+                      > div {
+                        > svg {
+                          > foreignObject {
+                            /*folderButtonInner_*/
+                            > div {
+                              /* folderButtonContent_ */
+                              > div {
+                                /* folderPreviewWrapper_ */
+                                > div {
+                                  /* TASK: Remove the blurple from expanded folders. */
+                                  background-color: unset;
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
