@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        com.discord; reformat dates
 // @match       https://discord.com/*
-// @version     1.0
+// @version     1.0.1
 // @description 2025-09-11
 // @run-at      document-start
 // @grant       none
@@ -26,27 +26,31 @@ observer.subscribe((element) => {
   }
 });
 
+const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 function formatUTCDateString(utcString: string) {
   const date = new Date(utcString);
-  let y = date.getFullYear(),
-    m = date.getMonth() + 1,
-    d = date.getDate(),
-    hh = date.getHours(),
-    mm = date.getMinutes(),
-    ss = date.getSeconds(),
-    ap = hh < 12 ? 'AM' : 'PM';
-  hh = hh % 12 || 12; // Convert to 12-hour format, ensuring 12 instead of 0
+  let year = date.getFullYear();
+  let month = date.getMonth();
+  let day = date.getDate();
+  let hour = date.getHours();
+  let minute = date.getMinutes();
+  let second = date.getSeconds();
+  let am_pm = hour < 12 ? 'AM' : 'PM';
+  let month_string = months[month];
+  // adjust for display
+  month = month + 1;
+  hour = hour % 12 || 12; // Convert to 12-hour format, ensuring 12 instead of 0
   return (
-    '' + // keeps formatting
-    y +
+    '' + // keeps prettier formatting
+    year +
     '-' +
-    ((m < 10 ? '0' : '') + m) + //
+    ((month < 10 ? '0' : '') + month) +
     '-' +
-    ((d < 10 ? '0' : '') + d) + //
-    (' ' + (hh < 10 ? '0' : '') + hh) + //
-    (':' + (mm < 10 ? '0' : '') + mm) + //
-    // (':' + (ss < 10 ? '0' : '') + ss) + //
-    ' ' +
-    ap
+    ((day < 10 ? '0' : '') + day) +
+    (' ' + (hour < 10 ? '0' : '') + hour) +
+    (':' + (minute < 10 ? '0' : '') + minute) +
+    // (':' + (second < 10 ? '0' : '') + second) + //
+    (' ' + am_pm) +
+    (' ' + '(' + month_string + ' ' + day + ')')
   );
 }
