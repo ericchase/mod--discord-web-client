@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        com.discord; fix servers sidebar svg icons
 // @match       https://discord.com/*
-// @version     1.0
+// @version     1.0.0
 // @description 5/1/2025, 1:12:12 AM
 // @run-at      document-start
 // @grant       none
