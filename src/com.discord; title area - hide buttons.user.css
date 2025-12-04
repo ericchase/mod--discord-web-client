@@ -1,0 +1,11 @@
+/* ==UserStyle==
+@name           com.discord; title area - hide buttons
+@namespace      github.com/openstyles/stylus
+@version        1.0.0
+@author         Me
+==/UserStyle== */
+@-moz-document domain("discord.com") {
+  [class^='button_']:has([aria-label='Checkpoint']) {
+    display: none;
+  }
+}

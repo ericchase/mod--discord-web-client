@@ -19,10 +19,11 @@ if (BunPlatform_Argv_Includes('--dev')) {
 }
 Builder.SetVerbosity(Builder.VERBOSITY._1_LOG);
 
+// `sfw` : https://socket.dev/blog/introducing-socket-firewall
 Builder.SetStartUpSteps(
   Step_Dev_Project_Update_Config({ project_dir: '.' }),
-  Step_Bun_Run({ cmd: ['bun', 'update', '--latest'], showlogs: false }),
-  Step_Bun_Run({ cmd: ['bun', 'install'], showlogs: false }),
+  Step_Bun_Run({ cmd: ['sfw', 'bun', 'update', '--latest'], showlogs: false }),
+  Step_Bun_Run({ cmd: ['sfw', 'bun', 'install'], showlogs: false }),
   Step_FS_Clean_Directory(Builder.Dir.Out),
   //
 );
