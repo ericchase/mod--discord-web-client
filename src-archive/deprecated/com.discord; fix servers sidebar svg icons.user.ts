@@ -2,12 +2,12 @@
 // @name        com.discord; fix servers sidebar svg icons
 // @match       https://discord.com/*
 // @version     1.0.0
-// @description 5/1/2025, 1:12:12 AM
+// @description 2025-05-01
 // @run-at      document-start
 // @grant       none
 // ==/UserScript==
 
-import { WebPlatform_DOM_Element_Added_Observer_Class } from './lib/ericchase/WebPlatform_DOM_Element_Added_Observer_Class.js';
+import { WebPlatform_DOM_Element_Added_Observer_Class } from '../../src/lib/ericchase/WebPlatform_DOM_Element_Added_Observer_Class.js';
 
 /* @me
 nav[aria-label="Servers sidebar"] {

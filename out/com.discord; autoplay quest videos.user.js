@@ -2,7 +2,7 @@
 // @name        com.discord; autoplay quest videos
 // @match       https://discord.com/discovery/quests*
 // @version     1.0.0
-// @description 7/19/2025, 2:53:33 PM
+// @description 2025-07-19
 // @run-at      document-start
 // @grant       none
 // ==/UserScript==
@@ -29,7 +29,7 @@ class Class_WebPlatform_DOM_Element_Added_Observer_Class {
           const tree_walker = document.createTreeWalker(node, NodeFilter.SHOW_ELEMENT);
           const processCurrentNode = () => {
             if (sent_set.has(tree_walker.currentNode) === false) {
-              if (tree_walker.currentNode instanceof Element && tree_walker.currentNode.matches(this.config.selector) === true) {
+              if (isStyleElement(tree_walker.currentNode) && tree_walker.currentNode.matches(this.config.selector) === true) {
                 this.$send(tree_walker.currentNode);
                 sent_set.add(tree_walker.currentNode);
               }
@@ -54,7 +54,7 @@ class Class_WebPlatform_DOM_Element_Added_Observer_Class {
         const tree_walker = document.createTreeWalker(this.config.source, NodeFilter.SHOW_ELEMENT);
         const processCurrentNode = () => {
           if (sent_set.has(tree_walker.currentNode) === false) {
-            if (tree_walker.currentNode instanceof Element && tree_walker.currentNode.matches(this.config.selector) === true) {
+            if (isStyleElement(tree_walker.currentNode) && tree_walker.currentNode.matches(this.config.selector) === true) {
               this.$send(tree_walker.currentNode);
               sent_set.add(tree_walker.currentNode);
             }
@@ -65,7 +65,7 @@ class Class_WebPlatform_DOM_Element_Added_Observer_Class {
         }
       } else {
         for (const child of this.config.source.childNodes) {
-          if (child instanceof Element && child.matches(this.config.selector) === true) {
+          if (isStyleElement(child) && child.matches(this.config.selector) === true) {
             this.$send(child);
           }
         }
@@ -105,6 +105,9 @@ class Class_WebPlatform_DOM_Element_Added_Observer_Class {
 }
 function WebPlatform_DOM_Element_Added_Observer_Class(config) {
   return new Class_WebPlatform_DOM_Element_Added_Observer_Class(config);
+}
+function isStyleElement(node) {
+  return node && node.style instanceof CSSStyleDeclaration && node instanceof Element;
 }
 
 // src/com.discord; autoplay quest videos.user.ts

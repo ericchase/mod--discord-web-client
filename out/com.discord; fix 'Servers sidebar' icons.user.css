@@ -1,0 +1,91 @@
+/* ==UserStyle==
+@name           com.discord; fix 'Servers sidebar' icons
+@namespace      github.com/openstyles/stylus
+@version        1.0.0
+@author         Me
+==/UserStyle== */
+@-moz-document domain("discord.com") {
+  :root {
+    --user-blurple: #5865f2;
+  }
+
+  [aria-label='Servers sidebar'] {
+    #guild-list-unread-dms {
+      /* fix gap */
+      &[hidden] {
+        display: none;
+      }
+
+      /* fix dms height */
+      > div {
+        height: 48px !important;
+      }
+    }
+
+    /* unread dm icon */
+    span,
+    /* server icon */
+    [class*='blobContainer_'],
+    /* non-server icon */
+    [class*='listItemWrapper_'] {
+      /* circular channel icons */
+      > [class*='wrapper_'] > svg {
+        /* easier to see background */
+        background-color: rgba(127, 127, 127, 0.125);
+        clip-path: circle();
+      }
+      /* squircle-like channel icons when selected */
+      &[class*='selected_'] > [class*='wrapper_'] > svg {
+        clip-path: inset(0 round 16px);
+      }
+    }
+
+    [class*='folderGroup_'] {
+      /* squircle-like folders */
+      [class*='folderHeader_'] {
+        clip-path: inset(0 round 16px);
+      }
+
+      /* when NOT expanded */
+      &:not([class*='isExpanded_']) {
+        /* blurple folder background */
+        [class*='folderPreviewWrapper_'] {
+          background-color: var(--user-blurple);
+        }
+
+        /* circular folder preview icons */
+        /* fix folder preview icon size */
+        [class*='folderPreviewGuildIcon_'] {
+          border-radius: unset;
+          clip-path: circle();
+        }
+      }
+
+      /* when expanded */
+      &[class*='isExpanded_'] {
+        /* padding for symmetry */
+        padding-bottom: 2px;
+
+        [class*='folderGroupBackground_'] {
+          /* lighter folder background */
+          background-color: rgba(255, 255, 255, 0.125);
+          mix-blend-mode: difference;
+
+          /* extra room for icons */
+          left: calc(var(--custom-guild-list-padding) - ((var(--guildbar-folder-size) + 4px) - var(--guildbar-avatar-size)) / 2);
+          width: calc(var(--guildbar-folder-size) + 4px);
+        }
+
+        /* fix folder height */
+        > ul {
+          height: unset !important;
+        }
+      }
+    }
+
+    /* smaller icon gaps */
+    [class*='stack_'] {
+      gap: 4px !important;
+    }
+  }
+}

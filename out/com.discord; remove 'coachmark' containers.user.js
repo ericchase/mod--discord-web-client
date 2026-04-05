@@ -1,8 +1,8 @@
 // ==UserScript==
-// @name        com.discord; hide members list recent activity
+// @name        com.discord; remove 'coachmark' containers
 // @match       https://discord.com/*
 // @version     1.0.0
-// @description 2025-09-13
+// @description 2026-04-04
 // @run-at      document-start
 // @grant       none
 // ==/UserScript==
@@ -29,7 +29,7 @@ class Class_WebPlatform_DOM_Element_Added_Observer_Class {
           const tree_walker = document.createTreeWalker(node, NodeFilter.SHOW_ELEMENT);
           const processCurrentNode = () => {
             if (sent_set.has(tree_walker.currentNode) === false) {
-              if (tree_walker.currentNode instanceof Element && tree_walker.currentNode.matches(this.config.selector) === true) {
+              if (isStyleElement(tree_walker.currentNode) && tree_walker.currentNode.matches(this.config.selector) === true) {
                 this.$send(tree_walker.currentNode);
                 sent_set.add(tree_walker.currentNode);
               }
@@ -54,7 +54,7 @@ class Class_WebPlatform_DOM_Element_Added_Observer_Class {
         const tree_walker = document.createTreeWalker(this.config.source, NodeFilter.SHOW_ELEMENT);
         const processCurrentNode = () => {
           if (sent_set.has(tree_walker.currentNode) === false) {
-            if (tree_walker.currentNode instanceof Element && tree_walker.currentNode.matches(this.config.selector) === true) {
+            if (isStyleElement(tree_walker.currentNode) && tree_walker.currentNode.matches(this.config.selector) === true) {
               this.$send(tree_walker.currentNode);
               sent_set.add(tree_walker.currentNode);
             }
@@ -65,7 +65,7 @@ class Class_WebPlatform_DOM_Element_Added_Observer_Class {
         }
       } else {
         for (const child of this.config.source.childNodes) {
-          if (child instanceof Element && child.matches(this.config.selector) === true) {
+          if (isStyleElement(child) && child.matches(this.config.selector) === true) {
             this.$send(child);
           }
         }
@@ -106,36 +106,17 @@ class Class_WebPlatform_DOM_Element_Added_Observer_Class {
 function WebPlatform_DOM_Element_Added_Observer_Class(config) {
   return new Class_WebPlatform_DOM_Element_Added_Observer_Class(config);
 }
+function isStyleElement(node) {
+  return node && node.style instanceof CSSStyleDeclaration && node instanceof Element;
+}
 
-// src/com.discord; hide members list recent activity.user.ts
-WatchForMembersList();
-function WatchForMembersList() {
-  const observer = WebPlatform_DOM_Element_Added_Observer_Class({
-    selector: 'div[role="list"][aria-label="Members"]',
-  });
-  observer.subscribe((element) => {
-    if (element instanceof HTMLDivElement) {
-      ObserveMembersList(element);
-    }
-  });
-}
-function ObserveMembersList(members_list) {
-  const observer = WebPlatform_DOM_Element_Added_Observer_Class({
-    selector: 'h3,div',
-    options: {
-      subtree: false,
-    },
-    source: members_list,
-  });
-  observer.subscribe((element) => {
-    if (element instanceof HTMLDivElement) {
-      if (element.attributes.length === 0) {
-        element.style.setProperty('display', 'none');
-      }
-    } else if (element instanceof HTMLHeadingElement) {
-      if (element.textContent.startsWith('Activity')) {
-        element.style.setProperty('display', 'none');
-      }
-    }
-  });
-}
+// src/com.discord; remove 'coachmark' containers.user.ts
+WebPlatform_DOM_Element_Added_Observer_Class({
+  selector: 'div[class*=coachmarkContainer_]',
+}).subscribe((element) => {
+  if (element.parentElement?.className?.includes?.('container_')) {
+    element.parentElement.remove();
+  } else {
+    element.remove();
+  }
+});

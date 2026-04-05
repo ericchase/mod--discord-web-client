@@ -1,0 +1,35 @@
+/* ==UserStyle==
+@name           com.discord; fix buttons and icons
+@namespace      github.com/openstyles/stylus
+@version        1.0.0
+@author         Me
+==/UserStyle== */
+@-moz-document domain("discord.com") {
+  /* title bar area */
+  [class*='base_'] > [class*='bar_'] {
+    > [class*='trailing_'] {
+      svg[role='img'] {
+        width: 24px !important;
+        height: 24px !important;
+      }
+    }
+  }
+
+  /* text input area */
+  [class*='channelTextArea_'] {
+    [class*='buttonContainer_'] {
+      [class*='lottieIcon_'],
+      [class*='spriteContainer_'] {
+        width: 24px !important;
+        height: 24px !important;
+      }
+
+      [class*='spriteContainer_'] {
+        > div {
+          scale: 1.3333333333;
+          transform-origin: top left;
+        }
+      }
+    }
+  }
+}

@@ -7,7 +7,7 @@
 // @grant       none
 // ==/UserScript==
 
-import { WebPlatform_DOM_Element_Added_Observer_Class } from './lib/ericchase/WebPlatform_DOM_Element_Added_Observer_Class.js';
+import { WebPlatform_DOM_Element_Added_Observer_Class } from '../../src/lib/ericchase/WebPlatform_DOM_Element_Added_Observer_Class.js';
 
 const observer1 = WebPlatform_DOM_Element_Added_Observer_Class({
   selector: 'div[aria-label="Members"] > div[class*="rowContainer"] > div',

@@ -1,0 +1,50 @@
+/* ==UserStyle==
+@name           com.discord; hide buttons and icons
+@namespace      github.com/openstyles/stylus
+@version        1.0.0
+@author         Me
+==/UserStyle== */
+@-moz-document domain("discord.com") {
+  /* title bar area */
+  [class*='base_'] > [class*='bar_'] {
+    > [class*='trailing_'] {
+      /* some april fool's game discord added */
+      > div:has([aria-label='Last Meadow Online']) {
+        display: none;
+      }
+    }
+  }
+
+  /* server's channels sidebar */
+  ul[aria-label='Channels'] {
+    > li {
+      > div:has([aria-label='Server Guide']),
+      > div:has([aria-label='Server Boosts']) {
+        display: none;
+      }
+    }
+  }
+
+  /* server's settings sidebar */
+  [data-layer='GUILD_SETTINGS'] {
+    [role='tablist'] {
+      > [aria-label='Members'],
+      > [aria-label='App Directory'] {
+        display: none;
+      }
+    }
+  }
+
+  /* text input area */
+  [class*='channelTextArea_'] {
+    [aria-label='Send a gift'],
+    [aria-label='Apps'] {
+      display: none;
+    }
+  }
+
+  /* end of year recap thing */
+  /* [aria-label='Checkpoint'] {
+    display: none;
+  } */
+}

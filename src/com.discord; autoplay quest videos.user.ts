@@ -2,7 +2,7 @@
 // @name        com.discord; autoplay quest videos
 // @match       https://discord.com/discovery/quests*
 // @version     1.0.0
-// @description 7/19/2025, 2:53:33 PM
+// @description 2025-07-19
 // @run-at      document-start
 // @grant       none
 // ==/UserScript==

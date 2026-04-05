@@ -8,9 +8,9 @@ export class Class_WebPlatform_DOM_Element_Added_Observer_Class {
     source: Node;
   };
 
-  $match_set = new Set<Element>();
+  $match_set = new Set<Element & { style: CSSStyleDeclaration }>();
   $mutation_observer: MutationObserver;
-  $subscription_set = new Set<(element: Element, unsubscribe: () => void) => void>();
+  $subscription_set = new Set<(element: Element & { style: CSSStyleDeclaration }, unsubscribe: () => void) => void>();
 
   constructor(config: Config) {
     this.config = {
@@ -28,8 +28,8 @@ export class Class_WebPlatform_DOM_Element_Added_Observer_Class {
           const tree_walker = document.createTreeWalker(node, NodeFilter.SHOW_ELEMENT);
           const processCurrentNode = () => {
             if (sent_set.has(tree_walker.currentNode) === false) {
-              if (tree_walker.currentNode instanceof Element && tree_walker.currentNode.matches(this.config.selector) === true) {
-                this.$send(tree_walker.currentNode as Element);
+              if (isStyleElement(tree_walker.currentNode) && tree_walker.currentNode.matches(this.config.selector) === true) {
+                this.$send(tree_walker.currentNode);
                 sent_set.add(tree_walker.currentNode);
               }
             }
@@ -55,8 +55,8 @@ export class Class_WebPlatform_DOM_Element_Added_Observer_Class {
         const tree_walker = document.createTreeWalker(this.config.source, NodeFilter.SHOW_ELEMENT);
         const processCurrentNode = () => {
           if (sent_set.has(tree_walker.currentNode) === false) {
-            if (tree_walker.currentNode instanceof Element && tree_walker.currentNode.matches(this.config.selector) === true) {
-              this.$send(tree_walker.currentNode as Element);
+            if (isStyleElement(tree_walker.currentNode) && tree_walker.currentNode.matches(this.config.selector) === true) {
+              this.$send(tree_walker.currentNode);
               sent_set.add(tree_walker.currentNode);
             }
           }
@@ -68,8 +68,8 @@ export class Class_WebPlatform_DOM_Element_Added_Observer_Class {
       } else {
         // process children
         for (const child of this.config.source.childNodes) {
-          if (child instanceof Element && child.matches(this.config.selector) === true) {
-            this.$send(child as Element);
+          if (isStyleElement(child) && child.matches(this.config.selector) === true) {
+            this.$send(child);
           }
         }
       }
@@ -81,7 +81,7 @@ export class Class_WebPlatform_DOM_Element_Added_Observer_Class {
       this.$subscription_set.delete(callback);
     }
   }
-  subscribe(callback: (element: Element, unsubscribe: () => void) => void): () => void {
+  subscribe(callback: (element: Element & { style: CSSStyleDeclaration }, unsubscribe: () => void) => void): () => void {
     this.$subscription_set.add(callback);
     let abort = false;
     for (const element of this.$match_set) {
@@ -98,7 +98,7 @@ export class Class_WebPlatform_DOM_Element_Added_Observer_Class {
     };
   }
 
-  $send(element: Element) {
+  $send(element: Element & { style: CSSStyleDeclaration }) {
     this.$match_set.add(element);
     for (const callback of this.$subscription_set) {
       callback(element, () => {
@@ -122,4 +122,8 @@ interface Config {
   selector: string;
   /** @default document.documentElement */
   source?: Node;
+}
+
+export function isStyleElement(node: any): node is Element & { style: CSSStyleDeclaration } {
+  return node && node.style instanceof CSSStyleDeclaration && node instanceof Element;
 }

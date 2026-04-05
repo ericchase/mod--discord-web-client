@@ -1,8 +1,8 @@
 // ==UserScript==
-// @name        com.discord; remove members button in server settings
+// @name        com.discord; remove 'Activity' list
 // @match       https://discord.com/*
 // @version     1.0.0
-// @description 2025-09-25
+// @description 2025-09-13
 // @run-at      document-start
 // @grant       none
 // ==/UserScript==
@@ -29,7 +29,7 @@ class Class_WebPlatform_DOM_Element_Added_Observer_Class {
           const tree_walker = document.createTreeWalker(node, NodeFilter.SHOW_ELEMENT);
           const processCurrentNode = () => {
             if (sent_set.has(tree_walker.currentNode) === false) {
-              if (tree_walker.currentNode instanceof Element && tree_walker.currentNode.matches(this.config.selector) === true) {
+              if (isStyleElement(tree_walker.currentNode) && tree_walker.currentNode.matches(this.config.selector) === true) {
                 this.$send(tree_walker.currentNode);
                 sent_set.add(tree_walker.currentNode);
               }
@@ -54,7 +54,7 @@ class Class_WebPlatform_DOM_Element_Added_Observer_Class {
         const tree_walker = document.createTreeWalker(this.config.source, NodeFilter.SHOW_ELEMENT);
         const processCurrentNode = () => {
           if (sent_set.has(tree_walker.currentNode) === false) {
-            if (tree_walker.currentNode instanceof Element && tree_walker.currentNode.matches(this.config.selector) === true) {
+            if (isStyleElement(tree_walker.currentNode) && tree_walker.currentNode.matches(this.config.selector) === true) {
               this.$send(tree_walker.currentNode);
               sent_set.add(tree_walker.currentNode);
             }
@@ -65,7 +65,7 @@ class Class_WebPlatform_DOM_Element_Added_Observer_Class {
         }
       } else {
         for (const child of this.config.source.childNodes) {
-          if (child instanceof Element && child.matches(this.config.selector) === true) {
+          if (isStyleElement(child) && child.matches(this.config.selector) === true) {
             this.$send(child);
           }
         }
@@ -106,13 +106,39 @@ class Class_WebPlatform_DOM_Element_Added_Observer_Class {
 function WebPlatform_DOM_Element_Added_Observer_Class(config) {
   return new Class_WebPlatform_DOM_Element_Added_Observer_Class(config);
 }
+function isStyleElement(node) {
+  return node && node.style instanceof CSSStyleDeclaration && node instanceof Element;
+}
 
-// src/com.discord; remove members button in server settings.user.ts
-var observer1 = WebPlatform_DOM_Element_Added_Observer_Class({
-  selector: 'div[aria-label="Members"] > div[class*="rowContainer"] > div',
-});
-observer1.subscribe((element1) => {
-  if (element1.textContent === 'Members') {
-    element1.parentElement?.parentElement?.remove();
+// src/com.discord; remove 'Activity' list.user.ts
+var activity_hidden = false;
+WebPlatform_DOM_Element_Added_Observer_Class({
+  selector: '[role="list"][aria-label="Members"] > [class*="membersGroup_"]:has(> [class*="headerContainer"])',
+}).subscribe((element_activity) => {
+  console.log({ element_activity });
+  if (activity_hidden !== true) {
+    const button_settings = element_activity.querySelector('div[role="button"]');
+    if (button_settings instanceof HTMLElement) {
+      console.log({ button_settings });
+      const observer = WebPlatform_DOM_Element_Added_Observer_Class({
+        selector: '#member-list-settings-menu-hide',
+      });
+      observer.subscribe((element_checkbox) => {
+        console.log({ element_checkbox });
+        if (element_checkbox instanceof HTMLElement) {
+          observer.disconnect();
+          if (element_checkbox.getAttribute('aria-checked') !== 'true') {
+            element_checkbox.click();
+          } else {
+            button_settings.click();
+          }
+          activity_hidden = true;
+          element_activity.style.display = 'none';
+        }
+      });
+      button_settings.click();
+    }
+  } else {
+    element_activity.style.display = 'none';
   }
 });

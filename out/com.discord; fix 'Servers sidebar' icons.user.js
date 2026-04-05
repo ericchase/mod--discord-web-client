@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name        com.discord; remove popup containers
+// @name        com.discord; fix 'Servers sidebar' icons
 // @match       https://discord.com/*
 // @version     1.0.0
 // @description 2026-04-04
@@ -29,7 +29,7 @@ class Class_WebPlatform_DOM_Element_Added_Observer_Class {
           const tree_walker = document.createTreeWalker(node, NodeFilter.SHOW_ELEMENT);
           const processCurrentNode = () => {
             if (sent_set.has(tree_walker.currentNode) === false) {
-              if (tree_walker.currentNode instanceof Element && tree_walker.currentNode.matches(this.config.selector) === true) {
+              if (isStyleElement(tree_walker.currentNode) && tree_walker.currentNode.matches(this.config.selector) === true) {
                 this.$send(tree_walker.currentNode);
                 sent_set.add(tree_walker.currentNode);
               }
@@ -54,7 +54,7 @@ class Class_WebPlatform_DOM_Element_Added_Observer_Class {
         const tree_walker = document.createTreeWalker(this.config.source, NodeFilter.SHOW_ELEMENT);
         const processCurrentNode = () => {
           if (sent_set.has(tree_walker.currentNode) === false) {
-            if (tree_walker.currentNode instanceof Element && tree_walker.currentNode.matches(this.config.selector) === true) {
+            if (isStyleElement(tree_walker.currentNode) && tree_walker.currentNode.matches(this.config.selector) === true) {
               this.$send(tree_walker.currentNode);
               sent_set.add(tree_walker.currentNode);
             }
@@ -65,7 +65,7 @@ class Class_WebPlatform_DOM_Element_Added_Observer_Class {
         }
       } else {
         for (const child of this.config.source.childNodes) {
-          if (child instanceof Element && child.matches(this.config.selector) === true) {
+          if (isStyleElement(child) && child.matches(this.config.selector) === true) {
             this.$send(child);
           }
         }
@@ -106,21 +106,89 @@ class Class_WebPlatform_DOM_Element_Added_Observer_Class {
 function WebPlatform_DOM_Element_Added_Observer_Class(config) {
   return new Class_WebPlatform_DOM_Element_Added_Observer_Class(config);
 }
+function isStyleElement(node) {
+  return node && node.style instanceof CSSStyleDeclaration && node instanceof Element;
+}
 
-// src/com.discord; remove popup containers.user.ts
-var observer = WebPlatform_DOM_Element_Added_Observer_Class({
-  selector: 'div[class*=coachmarkContainer_]',
-});
-observer.subscribe((element) => {
-  if (element instanceof HTMLDivElement) {
-    if (element.parentElement?.className.includes('container_')) {
-      if (element.parentElement?.parentElement?.className.includes('layerContainer_')) {
-        element.parentElement?.parentElement?.remove();
-      } else {
-        element.parentElement?.remove();
+// src/com.discord; fix 'Servers sidebar' icons.user.ts
+WebPlatform_DOM_Element_Added_Observer_Class({
+  selector: '[aria-label="Servers sidebar"] [class*=listItem_]',
+}).subscribe((element) => {
+  if (element.querySelector('[class*=guildSeparator_]')) {
+  } else {
+    for (const node of iterateDescendentsInReverseDepth(element)) {
+      if (node instanceof SVGMaskElement) {
+        node.remove();
+        continue;
       }
-    } else {
-      element.remove();
+      if (node.className?.includes?.('folderPreview')) {
+        continue;
+      }
+      _attributes(node);
+      if (isStyleElement(node)) {
+        const computed = window.getComputedStyle(node);
+        _size(node, computed, 'width');
+        _size(node, computed, 'height');
+        _styles(node, computed);
+        _svg(node, computed);
+      }
     }
   }
 });
+function _attributes(node) {
+  node.removeAttribute('mask');
+}
+function _size(node, computed, prop) {
+  if (node[prop]?.baseVal?.valueAsString === '40') {
+    node[prop].baseVal.valueAsString = '48';
+  }
+  if (node[prop] === '40') {
+    node[prop] = '48';
+  }
+  if (node[prop] === 40) {
+    node[prop] = 48;
+  }
+  if (computed[prop] === '40px') {
+    node.style[prop] = '48px';
+  }
+}
+function _styles(node, computed) {
+  if (computed.padding !== '0px') {
+    node.style.padding = '0px';
+  }
+}
+function _svg(node, computed) {
+  if (node.viewBox?.baseVal?.x === -4) {
+    node.viewBox.baseVal.x = 0;
+  }
+  if (node.viewBox?.baseVal?.y === -4) {
+    node.viewBox.baseVal.y = 0;
+  }
+  if (computed.insetInlineStart === '-4px') {
+    node.style.insetInlineStart = '0';
+  }
+  if (computed.top === '-4px') {
+    node.style.top = '0';
+  }
+}
+function* iterateDescendentsInReverseDepth(root) {
+  const map = new Map();
+  let depth = 0;
+  let group = [root];
+  while (group.length > 0) {
+    const children = [];
+    for (let i = 0; i < group.length; i++) {
+      children.push(...group[i].children);
+    }
+    if (children.length > 0) {
+      map.set(depth, children);
+    }
+    depth++;
+    group = children;
+  }
+  for (let i = depth - 1; i >= 0; i--) {
+    for (const node of map.get(i) ?? []) {
+      yield node;
+    }
+  }
+}
