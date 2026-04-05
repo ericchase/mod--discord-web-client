@@ -1,7 +1,7 @@
 /* ==UserStyle==
 @name           com.discord; fix 'Servers sidebar' icons
 @namespace      github.com/openstyles/stylus
-@version        1.0.0
+@version        1.0.1
 @author         Me
 ==/UserStyle== */
 @-moz-document domain("discord.com") {
@@ -41,11 +41,6 @@
     }
 
     [class*='folderGroup_'] {
-      /* squircle-like folders */
-      [class*='folderHeader_'] {
-        clip-path: inset(0 round 16px);
-      }
-
       /* when NOT expanded */
       &:not([class*='isExpanded_']) {
         /* blurple folder background */
