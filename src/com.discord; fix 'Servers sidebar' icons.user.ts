@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        com.discord; fix 'Servers sidebar' icons
 // @match       https://discord.com/*
-// @version     1.0.1
+// @version     1.0.2
 // @description 2026-04-04
 // @run-at      document-start
 // @grant       none
@@ -19,9 +19,16 @@ WebPlatform_DOM_Element_Added_Observer_Class({
   processListItem(element);
   WebPlatform_DOM_ChildList_Observer_Class({
     source: element,
-  }).subscribe(() => {
-    // reprocess for good measure
-    processListItem(element);
+  }).subscribe((record) => {
+    if (record.addedNodes[0] instanceof Element && record.addedNodes[0].matches('[class*=pill_] *')) {
+      record.addedNodes[0].toggleAttribute('data-skip', true);
+      // skip
+    } else if (record.removedNodes[0] instanceof Element && record.removedNodes[0].hasAttribute('data-skip')) {
+      // skip
+    } else {
+      // reprocess for good measure
+      processListItem(element);
+    }
   });
 });
 
