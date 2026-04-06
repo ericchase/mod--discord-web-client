@@ -1,12 +1,13 @@
 // ==UserScript==
 // @name        com.discord; fix 'Servers sidebar' icons
 // @match       https://discord.com/*
-// @version     1.0.0
+// @version     1.0.1
 // @description 2026-04-04
 // @run-at      document-start
 // @grant       none
 // ==/UserScript==
 
+import { WebPlatform_DOM_ChildList_Observer_Class } from './lib/ericchase/WebPlatform_DOM_ChildList_Observer_Class.js';
 import { isStyleElement, WebPlatform_DOM_Element_Added_Observer_Class } from './lib/ericchase/WebPlatform_DOM_Element_Added_Observer_Class.js';
 
 // remove native icon masks
@@ -15,6 +16,16 @@ import { isStyleElement, WebPlatform_DOM_Element_Added_Observer_Class } from './
 WebPlatform_DOM_Element_Added_Observer_Class({
   selector: '[aria-label="Servers sidebar"] [class*=listItem_]',
 }).subscribe((element) => {
+  processListItem(element);
+  WebPlatform_DOM_ChildList_Observer_Class({
+    source: element,
+  }).subscribe(() => {
+    // reprocess for good measure
+    processListItem(element);
+  });
+});
+
+function processListItem(element: Element & { style: CSSStyleDeclaration }) {
   if (element.querySelector('[class*=guildSeparator_]')) {
     // skip separator
   } else {
@@ -43,7 +54,7 @@ WebPlatform_DOM_Element_Added_Observer_Class({
       }
     }
   }
-});
+}
 
 function _attributes(node: Element) {
   node.removeAttribute('mask');
