@@ -2,7 +2,7 @@
   "dependencies": {},
   "devDependencies": {
     "@types/bun": "1.3.11",
-    "@types/chrome": "0.1.39",
+    "@types/chrome": "0.1.40",
     "@types/node": "25.5.2",
     "tree-kill": "1.2.2"
   },
